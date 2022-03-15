@@ -18,34 +18,6 @@ const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const Tabs = () => {
-  // function HomeStack() {
-  //   return (
-  //     <Stack.Navigator
-  //       initialRouteName="Home"
-  //       screenOptions={{
-  //         headerShown: false,
-  //     }}>
-  //       <Stack.Screen
-  //         name="Recent_St"
-  //         component={RecentScreen}
-  //         // options={{title: 'RecentScreen'}}
-  //       />
-  //       <Stack.Screen
-  //         name="RecordForm"
-  //         component={RecordForm}
-  //         // options={{title: 'RecordForm'}}
-  //       />
-  //       <Stack.Screen
-  //         name="Detail"
-  //         component={DetailScreen}
-  //       />
-  //       {/* <Stack.Screen
-  //         name="SignIn"
-  //         component={SignIn}
-  //       /> */}
-  //     </Stack.Navigator>
-  //   );
-  // }
   return (
       <Tab.Navigator
         screenOptions={({ route }) => ({
