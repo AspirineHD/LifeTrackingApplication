@@ -11,7 +11,6 @@ import firestore from '@react-native-firebase/firestore';
 const DetailScreen = ({ route, navigation }) => {
 
     const { key, transCost, transDate, transMonth, transDay, transEstTime, transType, transNote } = route.params;
-    // console.log({transCostIn, transDateIn, transMonthIn, transDayIn, transNoteIn, transTypeIn});
 
     const [transDateIn, setTransDateIn] = useState(transDate);
     const [transMonthIn, setTransMonthIn] = useState(transMonth);
@@ -40,9 +39,9 @@ const DetailScreen = ({ route, navigation }) => {
     };
     // ----------------------- //
   
-    const updateData = () => {
+    const updateData = async () => {
 
-        firestore()
+        await firestore()
         .collection('users')
         .doc(key)
         .update({
@@ -91,7 +90,7 @@ const DetailScreen = ({ route, navigation }) => {
           <Ionicons name='ios-time-outline' style={styles.icon} />
           <TextInput
             style={styles.input}
-            placeholder="How long it take?"
+            placeholder="How long it take? (Minute)"
             onChangeText={setTransEstTimeIn}
             value={transEstTimeIn}
             keyboardType={'number-pad'}

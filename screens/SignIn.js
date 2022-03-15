@@ -13,7 +13,7 @@ const SignIn = ({navigation}) => {
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [keyboardStatus, setKeyboardStatus] = useState(undefined);
+  // const [keyboardStatus, setKeyboardStatus] = useState(undefined);
 
   // Handle user state changes
   function onAuthStateChanged(user) {
@@ -23,16 +23,16 @@ const SignIn = ({navigation}) => {
 
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-    const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
-      setKeyboardStatus("Keyboard Shown");
-    });
-    const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
-      setKeyboardStatus("Keyboard Hidden");
-    });
+    // const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
+    //   setKeyboardStatus("Keyboard Shown");
+    // });
+    // const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
+    //   setKeyboardStatus("Keyboard Hidden");
+    // });
     return () => {
       subscriber; // unsubscribe on unmount
-      showSubscription.remove();
-      hideSubscription.remove();
+      // showSubscription.remove();
+      // hideSubscription.remove();
     }  
   }, []);
 
@@ -80,7 +80,6 @@ const SignIn = ({navigation}) => {
                     onChangeText={setEmail}
                     value={email}
                     keyboardType={'email-address'}
-                    onSubmitEditing={Keyboard.dismiss}
                   />
                 </View>
             </View>
@@ -93,7 +92,6 @@ const SignIn = ({navigation}) => {
                   onChangeText={setPassword}
                   value={password}
                   secureTextEntry={true}
-                  onSubmitEditing={Keyboard.dismiss}
                 />
               </View>
             </View>

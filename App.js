@@ -16,30 +16,32 @@ import LocationScreen from './screens/LocationScreen';
 import AccountScreen from './screens/AccountScreen';
 import DetailScreen from './screens/DetailScreen';
 import Tabs from './navigations/Tabs';
+import SignIn from './screens/SignIn';
 
 LogBox.ignoreLogs([
   "[react-native-gesture-handler] Seems like you\'re using an old API with gesture components, check out new Gestures system!",
   "EventEmitter.removeListener('keyboardDidShow', ...): Method has been deprecated. Please instead use `remove()` on the subscription returned by `EventEmitter.addListener`",
   "EventEmitter.removeListener('change', ...): Method has been deprecated. Please instead use `remove()` on the subscription returned by `EventEmitter.addListener`",
   "EventEmitter.removeListener('keyboardDidHide', ...): Method has been deprecated. Please instead use `remove()` on the subscription returned by `EventEmitter.addListener`",
+  "Warning:",
 ]);
 
-import { ThisMonth, LastMonth, NextMonth } from './screens/RecentScreen';
-import SignIn from './screens/SignIn';
+// import { ThisMonth, LastMonth, NextMonth } from './screens/RecentScreen';
+
 
 const Stack = createStackNavigator();
 
-function RecentTabs() {
-  return (
-    <TopTab.Navigator
-      initialRouteName = 'This Month'
-    >
-      <TopTab.Screen name="Last Month" component={LastMonth} />
-      <TopTab.Screen name="This Month" component={ThisMonth} />
-      <TopTab.Screen name="Next Month" component={NextMonth} />
-    </TopTab.Navigator>
-  );
-}
+// function RecentTabs() {
+//   return (
+//     <TopTab.Navigator
+//       initialRouteName = 'This Month'
+//     >
+//       <TopTab.Screen name="Last Month" component={LastMonth} />
+//       <TopTab.Screen name="This Month" component={ThisMonth} />
+//       <TopTab.Screen name="Next Month" component={NextMonth} />
+//     </TopTab.Navigator>
+//   );
+// }
 
 const Tab = createBottomTabNavigator();
 

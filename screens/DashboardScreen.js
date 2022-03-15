@@ -10,18 +10,17 @@ import {
   ScrollView,
   ActivityIndicator,
   TouchableOpacity,
+  Animated
 } from 'react-native';
 import {Left, Right, Body} from 'native-base';
 import {ListItem} from 'react-native-elements';
 
 import firestore from '@react-native-firebase/firestore';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import OpenModal from './OpenModal';
 
-const TopTab = createMaterialTopTabNavigator();
+// const TopTab = createMaterialTopTabNavigator();
 import {useNavigation} from '@react-navigation/native';
-import {parse} from 'react-native-svg';
+// import { Animated } from 'react-native-maps';
+// import {parse} from 'react-native-svg';
 
 const ThisMonth = () => {
   const months = [
@@ -97,55 +96,115 @@ const readData = monthNow => {
     return <ActivityIndicator />;
   }
   // console.log("records =>> "+JSON.stringify(records));
-  console.log('records Data =>> ' + JSON.stringify(records[1]));
+  // console.log('records Data =>> ' + JSON.stringify(records[1]));
   // console.log("month =>> "+months)
   var arrData = [];
   for (var month in months) {
     var totalPrice = 0;
-    var totalMonth = "";
+    var totalMonth = '';
     var totalTime = 0;
     for (var index in records) {
       // console.log('month =>> ' + months[month]);
       if (records[index]['transMonth'] == months[month]) {
         totalPrice += parseInt(records[index]['transCost']);
-        totalMonth = months[month]
+        totalMonth = months[month];
         totalTime += parseInt(records[index]['transEstTime']);
-
       }
     }
-    if(totalMonth){
-      var data={
+    if (totalMonth) {
+      var data = {
         totalPrice: totalPrice,
         totalMonth: totalMonth,
         totalTime: totalTime,
-      }
+      };
       console.log(data);
       arrData.push(data);
     }
   }
-  console.log(arrData);
+  // console.log(arrData);
   // setTotalRecords(arrData);
 
   return arrData;
+};
+
+const Progress = ({step, steps, height}) => {
+  const [width, setWidth] = React.useState(0);
+  const animatedValue = React.useRef(new Animated.Value(-1000)).current;
+  const reactive = React.useRef(new Animated.Value(-1000)).current;
+
+  React.useEffect(() =>{
+    Animated.timing(animatedValue,{
+      toValue:reactive,
+      duration:300,
+      useNativeDriver:true,
+    }).start();
+  },[])
+
+  React.useEffect(()=>{
+    reactive.setValue(-width+(width * step)/steps);
+
+  },[step,width])
+
+  return (
+    <>
+      <Text style={{fontSize:12,fontWeight:'900',marginBottom:8}}>{step}/{steps}</Text>
+      <View
+      onLayout={(e) =>{
+        const newWidth = e.nativeEvent.layout.width;
+        setWidth(newWidth);
+      }}
+        style={{
+          height,
+          backgroundColor: 'white',
+          borderRadius: height,
+          width:300,
+          overflow: 'hidden',
+          // borderWidth: 1
+        }}>
+        <Animated.View
+          style={{
+            height,
+            width: '100%',
+            borderRadius: height,
+            backgroundColor: 'red',
+            position: 'absolute',
+            left: 0,
+            top: 0,
+            transform:[{
+              translateX: animatedValue,
+            }]
+          }}
+        />
+      </View>
+    </>
+  );
 };
 
 const DashboardScreen = () => {
   const navigation = useNavigation();
 
   const renderItem = ({item, index}) => {
-    console.log("item =>> "+JSON.stringify(item));
-    console.log("index =>> "+index);
+    console.log('item =>> ' + JSON.stringify(item));
+    console.log('index =>> ' + index);
     return (
       <ScrollView>
         <TouchableOpacity delayLongPress={800}>
-          <ListItem.Content style={styles.item}>
+          <ListItem.Content style={styles.itemHeader}>
             <View style={{flexDirection: 'row'}}>
               <Left>
-                <Text style={styles.content}> {item.totalMonth}  </Text>
+                <Text style={styles.dateTitle}> {item.totalMonth} </Text>
               </Left>
+              <Right>
+                <Text style={styles.cost}> Total Cost {item.totalPrice} ฿</Text>
+              </Right>
+            </View>
+          </ListItem.Content>
+          <ListItem.Content style={styles.item}>
+            <View style={{flexDirection: 'row'}}>
+              <Left><Progress step={item.totalTime} steps={2500} height={20} /></Left>
               <Body></Body>
               <Right>
-                <Text style={styles.cost}> {item.totalPrice}฿</Text>
+                <Text style={styles.date}> {item.totalTime} min</Text>
               </Right>
             </View>
           </ListItem.Content>
@@ -156,6 +215,7 @@ const DashboardScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      {/* <Progress step={150} steps={2500} height={20} /> */}
       <FlatList
         data={readData()}
         keyExtractor={item => item.key}
