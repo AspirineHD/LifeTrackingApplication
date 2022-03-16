@@ -8,7 +8,7 @@ Project of ITE-439 : Mobile Device Application Development 2/2564
 นาย ปวรวรรธน์ ตั้งวัฒนาพรชัย 1813170030
 
 * Proposal:     https://github.com/AspirineHD/LifeTrackingApplication/blob/main/Documents/Project%20Proposal.pdf
-* Prototype:    
+* Prototype:    https://github.com/AspirineHD/LifeTrackingApplication/blob/main/Documents/Prototype.pdf
 * User Manual:  
 * Poster:       https://github.com/AspirineHD/LifeTrackingApplication/blob/main/Documents/LifeTrackingApplication-Poster.pdf     
 * Video:        https://drive.google.com/file/d/1uWbGjLnNseaagHXtiz8Fk9JHz9y-dwvZ/view?usp=sharing
