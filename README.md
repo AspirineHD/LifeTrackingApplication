@@ -9,7 +9,7 @@ Project of ITE-439 : Mobile Device Application Development 2/2564
 
 * Proposal:     https://github.com/AspirineHD/LifeTrackingApplication/blob/main/Documents/Project%20Proposal.pdf
 * Prototype:    https://github.com/AspirineHD/LifeTrackingApplication/blob/main/Documents/Prototype.pdf
-* User Manual:  
+* User Manual:  https://drive.google.com/file/d/1GQZS4lPObakUudZyZgERR9-t-ufoB3JA/view?usp=sharing
 * Poster:       https://github.com/AspirineHD/LifeTrackingApplication/blob/main/Documents/LifeTrackingApplication-Poster.pdf     
 * Video:        https://drive.google.com/file/d/1uWbGjLnNseaagHXtiz8Fk9JHz9y-dwvZ/view?usp=sharing
 * Source Code(.Zip File): https://drive.google.com/file/d/1PycMPilwgl8WhUrBac8FZXdDiMzdgYoO/view?usp=sharing
